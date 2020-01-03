@@ -1,0 +1,13 @@
+<h2>{{title}}</h2>
+<ul>
+    <li *ngFor="let course of courses">{{course}}</li>
+</ul>
+ <div (click)="onDivClick()">
+<button class="btn btn-primary" [class.active]="isActive" [style.backgroundColor]="isActive ? 'blue' : 'green'"
+(click)="onSave($event)">Click</button>
+<!-- Both works same and gives back the result -->
+<input (keyup.enter)="onKeyUp($event)"/>
+<input #e (keyup.enter)="onKeyUpNew(e.value)"/>
+<input [(ngModel)]="email" (keyup.enter)="onKeyUpNew1()"/>
+<p>{{text | summary: 4}}</p>
+</div>
