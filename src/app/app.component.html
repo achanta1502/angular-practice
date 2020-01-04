@@ -1,2 +1,8 @@
 <h1>Angular</h1>
-<app-course></app-course>
+ <!-- <app-course></app-course> --> 
+ <!-- <favorite [is-favorite]="post.isFavorite" (change)="onFavoriteChanged($event)"></favorite>
+ <bootstrap-panel>
+     <ng-container class="heading">Heading</ng-container>
+     <div class="body">Body</div> 
+ </bootstrap-panel> -->
+<app-like [likesCount]="tweet.likesCount" [isActive]="tweet.isLiked" (change)="onClick($event)"></app-like>

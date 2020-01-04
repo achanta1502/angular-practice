@@ -6,5 +6,19 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'yo dude';
+  post = {
+    title: "Title",
+    isFavorite: true
+  }
+  tweet = {
+    body: "some tweet",
+    isLiked: false,
+    likesCount: 0
+  }
+  onFavoriteChanged(eventArgs) {
+    console.log("change requested", eventArgs);
+  }
+  onClick(event) {
+    console.log("number of likes", event);
+  }
 }

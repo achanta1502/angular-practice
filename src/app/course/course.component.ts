@@ -12,6 +12,7 @@ export class CourseComponent implements OnInit {
   courses;
   text = "Lorem Ipsum is simply";
   email = "xyz@gmail.com";
+  isFavorite: boolean;
   constructor(service: CourseService) { 
     this.courses = service.getCourses();
   }
@@ -30,6 +31,10 @@ export class CourseComponent implements OnInit {
   }
   onKeyUpNew1() {
     console.log(this.email);
+  }
+  onStarClick() {
+    this.isFavorite = !this.isFavorite;
+    console.log(this.isFavorite);
   }
   ngOnInit() {
   }
