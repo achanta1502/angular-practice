@@ -1,0 +1,12 @@
+.z-heading {
+    font-weight: bold;
+    padding: 20px;
+    cursor: pointer;
+}
+.z-body {
+    padding: 20px;
+}
+
+.expanded {
+    background: #f0f0f0;
+}

@@ -1,3 +1,9 @@
 <span class="spinner-border" [class.text-success]="isActive" 
-[class.text-danger]="!isActive" (click)="onClick()">{{likesCount}}</span>
+[class.text-danger]="!isActive" (click)="onClick()"></span>
+<span>{{likesCount}}</span>
 
+<span class="spinner-border" [ngClass] = "{
+    'text-success': isActive,
+    'text-danger': !isActive
+}" (click)="onClick()"></span>
+<span>{{likesCount}}</span>
