@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Config } from 'protractor';
 import { PostService } from '../services/post.service';
 import { AppError } from '../common/app-error';
 import { NotFoundError } from '../common/not-found-error';
-import { isIdentifier } from '@angular/compiler';
 import { BadRequestError } from '../common/bad-request-error';
 
 interface Data {
@@ -25,19 +22,16 @@ export class PostsComponent implements OnInit{
   }
 
   ngOnInit() {
-    this.service.getPosts()
+    this.service.getAll()
       .subscribe((response: Data[]) => {
         this.posts = response;
-      }, (error: AppError) => {
-        alert('An unexpected error occured.');
-        console.log('unexpected error');
       });
   }
 
   createPost(input: HTMLInputElement) {
     let post: any = {title: input.value};
     input.value = '';
-    this.service.createPost(post)
+    this.service.create(post)
     .subscribe((response: Data) => {
       post.id = response.id;
       this.posts.splice(0, 0, post);
@@ -45,22 +39,19 @@ export class PostsComponent implements OnInit{
     }, (error: AppError) => {
       if(error instanceof BadRequestError) 
         console.log('Bad request error');
-      else {
-        alert('An unexpected error occured.');
-        console.log('unexpected error');
-      }
+      else throw error;
     })
   }
   updatePost(post) {
 
-    this.service.updatePost(post)
+    this.service.update(post)
     .subscribe(response => {
       console.log(response);
     });
   }
 
   deletePost(post) {
-    this.service.deletePost(post.id)
+    this.service.delete(post.id)
     .subscribe((response) => {
       console.log(response);
       let index = this.posts.indexOf(post);
@@ -68,10 +59,7 @@ export class PostsComponent implements OnInit{
     }, (error: AppError) => {
       if(error instanceof NotFoundError)
         alert('This post has already been deleted');
-      else {
-        alert('An unexpected error occured.');
-        console.error(error);
-      }
+      else throw error;
     }
     );
   }

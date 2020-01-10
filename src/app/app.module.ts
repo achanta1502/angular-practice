@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,6 +19,9 @@ import { NewCourseFormComponent } from './new-course-form/new-course-form.compon
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { PostsComponent } from './posts/posts.component';
 import { PostService } from './services/post.service';
+import {AppErrorHandler} from './common/app-error-handler';
+import { GithubFollowersComponent } from './github-followers/github-followers.component';
+import { GithubFollowersService } from './services/github-followers.service';
 
 @NgModule({
   declarations: [
@@ -36,6 +39,7 @@ import { PostService } from './services/post.service';
     NewCourseFormComponent,
     ChangePasswordComponent,
     PostsComponent,
+    GithubFollowersComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,7 +50,9 @@ import { PostService } from './services/post.service';
   ],
   providers: [
     CourseService,
-    PostService
+    PostService,
+    GithubFollowersService,
+    {provide: ErrorHandler, useClass: AppErrorHandler}
   ],
   bootstrap: [AppComponent]
 })
